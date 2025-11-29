@@ -59,6 +59,5 @@ Aplicación web desarrollada con Django que muestra el uso del ORM para integrar
 - Editar: `/pedidos/<id>/editar/`
 - Eliminar: `/pedidos/<id>/eliminar/`
 
-### Consultas ORM filtradas (ejemplo):
-- `/pedidos/cliente/<id>/?inicio=YYYY-MM-DD&fin=YYYY-MM-DD`
+
 
