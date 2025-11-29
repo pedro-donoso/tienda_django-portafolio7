@@ -1,11 +1,17 @@
 from django.views.generic import (
-    ListView, CreateView, UpdateView, DeleteView
+    TemplateView, ListView, CreateView, UpdateView, DeleteView
 )
 from django.urls import reverse_lazy
+
 from .models import Producto, Pedido, Cliente  # IMPORTANTE: incluir Cliente
 
 
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
 # --------- PRODUCTO (CRUD) ---------
+
+
 class ProductoListView(ListView):
     model = Producto
     template_name = 'productos/producto_list.html'

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio – Gestión de Tienda</title>
+</head>
+<body>
+  <h1>Gestión de Tienda</h1>
+
+  <p>En esta aplicación puedes gestionar modelos simples y relacionados con Django y su ORM:</p>
+  <ul>
+    <li>Productos: modelo sin relaciones (tabla independiente).</li>
+    <li>Clientes: modelo independiente, usado en pedidos.</li>
+    <li>Pedidos: relacionados 1–N con Cliente y N–N con Producto.</li>
+  </ul>
+
+  <h2>Rutas disponibles</h2>
+  <ul>
+    <li><a href="{% url 'cliente_list' %}">Gestión de clientes</a></li>
+    <li><a href="{% url 'producto_list' %}">Gestión de productos (CRUD)</a></li>
+    <li><a href="{% url 'pedido_list' %}">Gestión de pedidos (relaciones)</a></li>
+    <li><a href="/admin/">Panel de administración</a></li>
+  </ul>
+</body>
+</html>
