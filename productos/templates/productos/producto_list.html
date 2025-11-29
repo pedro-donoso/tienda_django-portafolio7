@@ -1,0 +1,18 @@
+<!-- productos/templates/productos/producto_list.html -->
+<h1>Productos</h1>
+<a href="{% url 'producto_create' %}">Agregar producto</a>
+<ul>
+  {% for producto in object_list %}
+    <li>
+      {{ producto.nombre }} -
+      ${{ producto.precio }} -
+      Stock: {{ producto.cantidad }}
+      |
+      <a href="{% url 'producto_update' producto.pk %}">Editar</a>
+      |
+      <a href="{% url 'producto_delete' producto.pk %}">Eliminar</a>
+    </li>
+  {% empty %}
+    <li>No hay productos.</li>
+  {% endfor %}
+</ul>
