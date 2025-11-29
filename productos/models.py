@@ -21,14 +21,22 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nombre
 
-# Modelo Pedido con relaciones
+
+class PerfilCliente(models.Model):  # Ejemplo OneToOne (1–1)
+    cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE)
+    telefono = models.CharField(max_length=20, blank=True)
 
 
 class Pedido(models.Model):
-    # uno a muchos: un cliente puede tener muchos pedidos
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    # muchos a muchos: un pedido puede tener muchos productos
-    productos = models.ManyToManyField(Producto)
+    cliente = models.ForeignKey(  # 1 cliente → muchos pedidos (1–N)
+        Cliente,
+        on_delete=models.CASCADE,
+        related_name='pedidos'
+    )
+    productos = models.ManyToManyField(  # N–N
+        Producto,
+        related_name='pedidos'
+    )
     fecha = models.DateField(auto_now_add=True)
     numero = models.CharField(max_length=20, unique=True)
 
