@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">Clientes</h1>
+
+<a href="{% url 'cliente_create' %}" class="btn btn-primary mb-3">Crear cliente</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cliente in object_list %}
+      <tr>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.correo }}</td>
+        <td>
+          <a href="{% url 'cliente_update' cliente.pk %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'cliente_delete' cliente.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="3">No hay clientes.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}
+
+
