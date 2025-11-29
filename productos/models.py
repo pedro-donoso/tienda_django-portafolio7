@@ -20,8 +20,7 @@ class Cliente(models.Model):
 
 
 class Pedido(models.Model):
-    cliente = models.ForeignKey(
-        Cliente, on_delete=models.CASCADE, related_name='pedidos')
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='pedidos')
     productos = models.ManyToManyField(Producto, related_name='pedidos')
     fecha = models.DateField(auto_now_add=True)
     numero = models.CharField(max_length=20, unique=True)

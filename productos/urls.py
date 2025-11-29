@@ -3,11 +3,19 @@ from django.urls import path
 from .views import (
     ProductoListView, ProductoCreateView,
     ProductoUpdateView, ProductoDeleteView,
+    ClienteListView, ClienteCreateView,
+    ClienteUpdateView, ClienteDeleteView,
     PedidoListView, PedidoCreateView,
     PedidoUpdateView, PedidoDeleteView,
 )
 
 urlpatterns = [
+    # Clientes
+    path('clientes/', ClienteListView.as_view(), name='cliente_list'),
+    path('clientes/crear/', ClienteCreateView.as_view(), name='cliente_create'),
+    path('clientes/<int:pk>/editar/', ClienteUpdateView.as_view(), name='cliente_update'),
+    path('clientes/<int:pk>/eliminar/', ClienteDeleteView.as_view(), name='cliente_delete'),
+
     # Productos
     path('productos/', ProductoListView.as_view(), name='producto_list'),
     path('productos/crear/', ProductoCreateView.as_view(), name='producto_create'),
