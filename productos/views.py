@@ -1,9 +1,11 @@
 # views.py
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView,DeleteView
+
+from django.urls import reverse_lazy
 
 from django.utils import timezone
 
-from .models import Pedido, Cliente
+from .models import Pedido, Cliente, Producto
 
 from django.db.models import Sum, Count
 
@@ -36,3 +38,28 @@ class PedidosResumenView(ListView):
             .annotate(total_productos=Count('productos'),
                       total_items=Sum('productos__cantidad'))  # annotate()
         )
+
+
+class ProductoListView(ListView):
+    model = Producto
+    template_name = 'productos/producto_list.html'
+
+
+class ProductoCreateView(CreateView):
+    model = Producto
+    fields = ['nombre', 'precio', 'cantidad', 'descripcion']
+    template_name = 'productos/producto_form.html'
+    success_url = reverse_lazy('producto_list')
+
+
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    fields = ['nombre', 'precio', 'cantidad', 'descripcion']
+    template_name = 'productos/producto_form.html'
+    success_url = reverse_lazy('producto_list')
+
+
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = 'productos/producto_confirm_delete.html'
+    success_url = reverse_lazy('producto_list')
