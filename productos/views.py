@@ -45,6 +45,25 @@ class PedidoListView(ListView):
     template_name = 'pedidos/pedido_list.html'
 
 
+class PedidoCreateView(CreateView):
+    model = Pedido
+    fields = ['numero', 'cliente', 'productos']
+    template_name = 'pedidos/pedido_form.html'
+    success_url = reverse_lazy('pedido_list')
+
+
+class PedidoUpdateView(UpdateView):
+    model = Pedido
+    fields = ['numero', 'cliente', 'productos']
+    template_name = 'pedidos/pedido_form.html'
+    success_url = reverse_lazy('pedido_list')
+
+
+class PedidoDeleteView(DeleteView):
+    model = Pedido
+    template_name = 'pedidos/pedido_confirm_delete.html'
+    success_url = reverse_lazy('pedido_list')
+
 # Pedidos por cliente y rango de fechas (filter, exclude, annotate)
 
 
@@ -68,6 +87,6 @@ class PedidosPorClienteView(ListView):
               .annotate(
                   total_productos=Count('productos'),
                   total_items=Sum('productos__cantidad')
-              )
+            )
         )
         return qs

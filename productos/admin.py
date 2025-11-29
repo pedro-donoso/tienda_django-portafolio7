@@ -1,7 +1,7 @@
 # productos/admin.py
 from django.contrib import admin
 
-from .models import Producto, Cliente, PerfilCliente, Pedido
+from .models import Producto, Cliente, Pedido
 
 @admin.register(Producto)
 
@@ -16,11 +16,7 @@ class ProductoAdmin(admin.ModelAdmin):
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'correo')
 
-@admin.register(PerfilCliente)
 
-
-class PerfilClienteAdmin(admin.ModelAdmin):
-    list_display = ('cliente', 'telefono')
 
 @admin.register(Pedido)
 
