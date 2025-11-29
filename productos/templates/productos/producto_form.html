@@ -1,11 +1,17 @@
-<!-- productos/templates/productos/producto_form.html -->
-<h1>{{ object|default_if_none:"Nuevo producto" }}</h1>
-<form method="post">
+{% extends "base.html" %}
+
+{% block title %}Producto{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">{{ object|default_if_none:"Nuevo producto" }}</h1>
+
+<form method="post" class="card card-body">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Guardar</button>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <a href="{% url 'producto_list' %}" class="btn btn-secondary">Volver a la lista</a>
+  <a href="{% url 'home' %}" class="btn btn-link">Inicio</a>
 </form>
-<a href="{% url 'producto_list' %}">Volver a la lista</a>
-<br>
-<a href="{% url 'home' %}">Volver al inicio</a>
+{% endblock %}
+
 

@@ -1,25 +1,49 @@
-<h1>Pedidos</h1>
-<a href="{% url 'pedido_create' %}">Crear pedido</a>
+{% extends "base.html" %}
 
-<ul>
-  {% for pedido in object_list %}
-    <li>
-      {{ pedido.numero }} - Cliente: {{ pedido.cliente.nombre }} - {{ pedido.fecha }}
-      <br>
-      Productos:
-      <ul>
-        {% for producto in pedido.productos.all %}
-          <li>{{ producto.nombre }} (stock: {{ producto.cantidad }})</li>
-        {% endfor %}
-      </ul>
-      <a href="{% url 'pedido_update' pedido.pk %}">Editar</a> |
-      <a href="{% url 'pedido_delete' pedido.pk %}">Eliminar</a>
-    </li>
-  {% empty %}
-    <li>No hay pedidos.</li>
-  {% endfor %}
-</ul>
+{% block title %}Pedidos{% endblock %}
 
-<a href="{% url 'home' %}">Volver al inicio</a>
+{% block content %}
+<h1 class="mb-3">Pedidos</h1>
+
+<a href="{% url 'pedido_create' %}" class="btn btn-primary mb-3">Crear pedido</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Productos</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pedido in object_list %}
+      <tr>
+        <td>{{ pedido.numero }}</td>
+        <td>{{ pedido.cliente.nombre }}</td>
+        <td>{{ pedido.fecha }}</td>
+        <td>
+          <ul class="mb-0">
+            {% for producto in pedido.productos.all %}
+              <li>{{ producto.nombre }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <a href="{% url 'pedido_update' pedido.pk %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'pedido_delete' pedido.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="5">No hay pedidos.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}
 
 

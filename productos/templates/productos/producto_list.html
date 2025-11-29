@@ -1,20 +1,39 @@
-<!-- productos/templates/productos/producto_list.html -->
-<h1>Productos</h1>
-<a href="{% url 'producto_create' %}">Agregar producto</a>
-<ul>
-  {% for producto in object_list %}
-    <li>
-      {{ producto.nombre }} -
-      ${{ producto.precio }} -
-      Stock: {{ producto.cantidad }}
-      |
-      <a href="{% url 'producto_update' producto.pk %}">Editar</a>
-      |
-      <a href="{% url 'producto_delete' producto.pk %}">Eliminar</a>
-    </li>
-  {% empty %}
-    <li>No hay productos.</li>
-  {% endfor %}
-</ul>
+{% extends "base.html" %}
 
-<a href="{% url 'home' %}">Volver al inicio</a>
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">Productos</h1>
+
+<a href="{% url 'producto_create' %}" class="btn btn-primary mb-3">Agregar producto</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for producto in object_list %}
+      <tr>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>
+          <a href="{% url 'producto_update' producto.pk %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'producto_delete' producto.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="4">No hay productos.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}

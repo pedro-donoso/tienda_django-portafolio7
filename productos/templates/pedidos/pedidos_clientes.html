@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Pedidos por cliente{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">Pedidos por cliente</h1>
+
+<form method="get" class="row g-3 mb-3">
+  <div class="col-auto">
+    <label class="form-label">Fecha inicio</label>
+    <input type="date" name="inicio" class="form-control" value="{{ request.GET.inicio }}">
+  </div>
+  <div class="col-auto">
+    <label class="form-label">Fecha fin</label>
+    <input type="date" name="fin" class="form-control" value="{{ request.GET.fin }}">
+  </div>
+  <div class="col-auto align-self-end">
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </div>
+</form>
+
+<ul class="list-group mb-3">
+  {% for pedido in object_list %}
+    <li class="list-group-item">
+      {{ pedido.numero }} - {{ pedido.fecha }}
+      <br>
+      Total productos diferentes: {{ pedido.total_productos }} |
+      Total ítems: {{ pedido.total_items }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">No hay pedidos para ese filtro.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}

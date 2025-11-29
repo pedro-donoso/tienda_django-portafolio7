@@ -1,25 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Inicio – Gestión de Tienda</title>
-</head>
-<body>
-  <h1>Gestión de Tienda</h1>
+{% extends "base.html" %}
 
-  <p>En esta aplicación puedes gestionar modelos simples y relacionados con Django y su ORM:</p>
+{% block title %}Inicio – Gestión de Tienda{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Gestión de Tienda</h1>
+
+  <p class="lead">
+    En esta aplicación puedes gestionar modelos simples y relacionados usando Django y su ORM.
+  </p>
+
   <ul>
-    <li>Productos: modelo sin relaciones (tabla independiente).</li>
-    <li>Clientes: modelo independiente, usado en pedidos.</li>
-    <li>Pedidos: relacionados 1–N con Cliente y N–N con Producto.</li>
+    <li>Producto: modelo sin relaciones (tabla independiente).</li>
+    <li>Cliente: modelo independiente usado en pedidos.</li>
+    <li>Pedido: relacionado 1–N con Cliente y N–N con Producto.</li>
   </ul>
 
-  <h2>Rutas disponibles</h2>
-  <ul>
-    <li><a href="{% url 'cliente_list' %}">Gestión de clientes</a></li>
-    <li><a href="{% url 'producto_list' %}">Gestión de productos (CRUD)</a></li>
-    <li><a href="{% url 'pedido_list' %}">Gestión de pedidos (relaciones)</a></li>
-    <li><a href="/admin/">Panel de administración</a></li>
-  </ul>
-</body>
-</html>
+  <h2 class="mt-4">Rutas disponibles</h2>
+  <div class="list-group">
+    <a class="list-group-item list-group-item-action" href="{% url 'cliente_list' %}">
+      Gestión de clientes
+    </a>
+    <a class="list-group-item list-group-item-action" href="{% url 'producto_list' %}">
+      Gestión de productos (CRUD)
+    </a>
+    <a class="list-group-item list-group-item-action" href="{% url 'pedido_list' %}">
+      Gestión de pedidos (relaciones)
+    </a>
+    <a class="list-group-item list-group-item-action" href="/admin/">
+      Panel de administración de Django
+    </a>
+  </div>
+{% endblock %}
