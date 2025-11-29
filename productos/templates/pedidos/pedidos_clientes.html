@@ -1,0 +1,28 @@
+<h1>Pedidos del cliente</h1>
+
+<form method="get">
+  <label>Fecha inicio:
+    <input type="date" name="inicio" value="{{ request.GET.inicio }}">
+  </label>
+  <label>Fecha fin:
+    <input type="date" name="fin" value="{{ request.GET.fin }}">
+  </label>
+  <button type="submit">Filtrar</button>
+</form>
+
+<ul>
+  {% for pedido in object_list %}
+    <li>
+      {{ pedido.numero }} - {{ pedido.fecha }} -
+      Total productos diferentes: {{ pedido.total_productos }} -
+      Total ítems: {{ pedido.total_items }}
+      <ul>
+        {% for producto in pedido.productos.all %}
+          <li>{{ producto.nombre }} ({{ producto.cantidad }})</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% empty %}
+    <li>No hay pedidos para ese filtro.</li>
+  {% endfor %}
+</ul>
