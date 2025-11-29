@@ -1,0 +1,8 @@
+<!-- productos/templates/productos/producto_form.html -->
+<h1>{{ object|default_if_none:"Nuevo producto" }}</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'producto_list' %}">Volver a la lista</a>
