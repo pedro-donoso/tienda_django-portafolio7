@@ -31,7 +31,7 @@ Aplicación web desarrollada con Django que muestra el uso del ORM para integrar
   - `Cliente`: `nombre`, `correo`.
   - `Pedido`: `numero`, `cliente` (`ForeignKey`), `productos` (`ManyToManyField`), `fecha`.
 
-7. Acceder en el navegador:
+### Acceder en el navegador:
 
 - Página de inicio: http://127.0.0.1:8000/
 - Panel admin: http://127.0.0.1:8000/admin/
@@ -41,24 +41,24 @@ Aplicación web desarrollada con Django que muestra el uso del ORM para integrar
 - Home (explica la app y muestra enlaces):
 - `/`
 
-- Clientes (CRUD):
+### Clientes (CRUD):
 - Listar: `/clientes/`
 - Crear: `/clientes/crear/`
 - Editar: `/clientes/<id>/editar/`
 - Eliminar: `/clientes/<id>/eliminar/`
 
-- Productos (CRUD, modelo sin relaciones):
+### Productos (CRUD, modelo sin relaciones):
 - Listar: `/productos/`
 - Crear: `/productos/crear/`
 - Editar: `/productos/<id>/editar/`
 - Eliminar: `/productos/<id>/eliminar/`
 
-- Pedidos (CRUD, modelo con relaciones):
+### Pedidos (CRUD, modelo con relaciones):
 - Listar: `/pedidos/`
 - Crear: `/pedidos/crear/`
 - Editar: `/pedidos/<id>/editar/`
 - Eliminar: `/pedidos/<id>/eliminar/`
 
-- Consultas ORM filtradas (ejemplo):
+### Consultas ORM filtradas (ejemplo):
 - `/pedidos/cliente/<id>/?inicio=YYYY-MM-DD&fin=YYYY-MM-DD`
 
