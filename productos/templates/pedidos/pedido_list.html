@@ -1,0 +1,16 @@
+<!-- productos/templates/pedidos/pedido_list.html -->
+<h1>Pedidos</h1>
+<ul>
+  {% for pedido in object_list %}
+    <li>
+      {{ pedido.numero }} - Cliente: {{ pedido.cliente.nombre }} - {{ pedido.fecha }}
+      <ul>
+        {% for producto in pedido.productos.all %}
+          <li>{{ producto.nombre }} ({{ producto.cantidad }})</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% empty %}
+    <li>No hay pedidos.</li>
+  {% endfor %}
+</ul>
