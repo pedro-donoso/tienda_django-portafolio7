@@ -1,16 +1,22 @@
-<!-- productos/templates/pedidos/pedido_list.html -->
 <h1>Pedidos</h1>
+<a href="{% url 'pedido_create' %}">Crear pedido</a>
+
 <ul>
   {% for pedido in object_list %}
     <li>
       {{ pedido.numero }} - Cliente: {{ pedido.cliente.nombre }} - {{ pedido.fecha }}
+      <br>
+      Productos:
       <ul>
         {% for producto in pedido.productos.all %}
-          <li>{{ producto.nombre }} ({{ producto.cantidad }})</li>
+          <li>{{ producto.nombre }} (stock: {{ producto.cantidad }})</li>
         {% endfor %}
       </ul>
+      <a href="{% url 'pedido_update' pedido.pk %}">Editar</a> |
+      <a href="{% url 'pedido_delete' pedido.pk %}">Eliminar</a>
     </li>
   {% empty %}
     <li>No hay pedidos.</li>
   {% endfor %}
 </ul>
+
