@@ -1,3 +1,5 @@
+https://tienda-django-portafolio7.onrender.com/clientes/
+
 # Gestión de Tienda – Django + ORM
 
 Aplicación web desarrollada con Django que muestra el uso del ORM para integrar modelos simples y relacionados con una base de datos. Permite gestionar Productos, Clientes y Pedidos, incluyendo relaciones uno a muchos y muchos a muchos, migraciones, consultas de filtrado y operaciones CRUD completas.
