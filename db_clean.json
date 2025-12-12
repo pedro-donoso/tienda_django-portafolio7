@@ -1,0 +1,11 @@
+﻿[
+  {
+    "model": "productos.producto",
+    "pk": 1,
+    "fields": {
+      "nombre": "Laptop",
+      "precio": 1200
+    }
+  }
+]
+
