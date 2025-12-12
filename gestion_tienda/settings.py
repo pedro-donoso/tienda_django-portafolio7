@@ -15,7 +15,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 # Seguridad
 SECRET_KEY = env("SECRET_KEY", default="dev-secret-key")
 DEBUG = env.bool("DEBUG", default=False)
-ALLOWED_HOSTS= "tienda-django-portafolio7.onrender.com"
+ALLOWED_HOSTS= ["tienda-django-portafolio7.onrender.com"]
 
 # Base de datos: Render provee DATABASE_URL automáticamente
 DATABASES = {
