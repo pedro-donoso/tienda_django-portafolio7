@@ -7,8 +7,8 @@ services:
       pip install -r requirements.txt
       python manage.py migrate
       python manage.py collectstatic --noinput
-    startCommand:     startCommand: gunicorn gestion_tienda.wsgi:application --bind 0.0.0.0:$PORT
-
+    startCommand: gunicorn gestion_tienda.wsgi:application --bind 0.0.0.0:$PORT
+    healthCheckPath: /
     envVars:
       - key: SECRET_KEY
         value: "tu-clave-segura"
@@ -20,3 +20,4 @@ services:
 databases:
   - name: tienda-db
     plan: free
+
