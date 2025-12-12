@@ -29,13 +29,14 @@ CSRF_TRUSTED_ORIGINS = [
 # Base de datos: Render provee DATABASE_URL automáticamente
 db_url = env("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
 
-# Render a veces entrega postgres:// en lugar de postgresql://
+# Normalizar la URL si Render entrega postgres:// en lugar de postgresql://
 if db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 DATABASES = {
     "default": env.db_url_config(db_url)
 }
+
 
 # Aplicaciones instaladas
 INSTALLED_APPS = [
