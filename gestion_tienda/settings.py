@@ -15,18 +15,26 @@ environ.Env.read_env(BASE_DIR / ".env")
 # Seguridad
 SECRET_KEY = env("SECRET_KEY", default="dev-secret-key")
 DEBUG = env.bool("DEBUG", default=False)
+
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "tienda-django-portafolio7.onrender.com"
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://tienda-django-portafolio7.onrender.com"]
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://tienda-django-portafolio7.onrender.com"
+]
 
 # Base de datos: Render provee DATABASE_URL automáticamente
+db_url = env("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+
+# Render a veces entrega postgres:// en lugar de postgresql://
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
 DATABASES = {
-    "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+    "default": env.db_url_config(db_url)
 }
 
 # Aplicaciones instaladas
@@ -92,3 +100,4 @@ LANGUAGE_CODE = "es"
 TIME_ZONE = "America/Santiago"
 USE_I18N = True
 USE_TZ = True
+
