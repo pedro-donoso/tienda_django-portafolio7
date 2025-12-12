@@ -6,10 +6,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "gestion_tienda",
+        "USER": "tienda_user",
+        "PASSWORD": "tu_password",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
+
 
 SECRET_KEY = 'django-insecure-km0ct8d%key0tqy4o&_zq)-zw7d(-05e_(opx=px+w1nb)wul3'
 
