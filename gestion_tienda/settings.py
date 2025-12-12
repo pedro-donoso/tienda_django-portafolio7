@@ -7,16 +7,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
+environ.Env.read_env(BASE_DIR / ".env")  # opcional en local
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "gestion_tienda",
-        "USER": "tienda_user",
-        "PASSWORD": "tu_password",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    "default": env.db("DATABASE_URL")
 }
+
 
 
 SECRET_KEY = 'django-insecure-km0ct8d%key0tqy4o&_zq)-zw7d(-05e_(opx=px+w1nb)wul3'
