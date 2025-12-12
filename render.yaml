@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tienda-django-portafolio7
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn gestion_tienda.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        value: "tu-clave-segura"
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "tienda-django-portafolio7.onrender.com"
+
+databases:
+  - name: tienda-db
+    plan: free
