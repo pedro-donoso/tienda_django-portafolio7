@@ -21,6 +21,8 @@ ALLOWED_HOSTS = [
     "tienda-django-portafolio7.onrender.com"
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://tienda-django-portafolio7.onrender.com"]
+
 
 # Base de datos: Render provee DATABASE_URL automáticamente
 DATABASES = {

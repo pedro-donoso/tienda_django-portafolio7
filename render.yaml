@@ -7,7 +7,8 @@ services:
       pip install -r requirements.txt
       python manage.py migrate
       python manage.py collectstatic --noinput
-    startCommand: gunicorn gestion_tienda.wsgi:application --bind 0.0.0.0:$PORT
+    startCommand:     startCommand: gunicorn gestion_tienda.wsgi:application --bind 0.0.0.0:$PORT
+
     envVars:
       - key: SECRET_KEY
         value: "tu-clave-segura"
